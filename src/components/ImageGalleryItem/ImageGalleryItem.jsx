@@ -1,19 +1,14 @@
-import React from 'react';
+import {useState} from 'react';
 import { Modal } from '../Modal/Modal';
 import PropTypes from 'prop-types';
 import { GalleryItem, Image } from './ImageGalleryItem.styled';
 
-export class ImageGalleryItem extends React.Component {
-  state = { isModalOpen: false };
+export const ImageGalleryItem = ({webformatURL, tags, largeImageURL}) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  toggleModal = () => {
-    this.setState(prevState => ({ isModalOpen: !prevState.isModalOpen }));
+  const toggleModal = () => {
+    setIsModalOpen(prevState => !prevState);
   };
-
-  render() {
-    const { webformatURL, tags, largeImageURL } = this.props;
-    const { isModalOpen } = this.state;
-    const { toggleModal } = this;
 
     return (
       <GalleryItem className="gallery-item">
@@ -36,7 +31,7 @@ export class ImageGalleryItem extends React.Component {
       </GalleryItem>
     );
   }
-}
+
 
 ImageGalleryItem.propTypes = {
   webformatURL: PropTypes.string.isRequired,
